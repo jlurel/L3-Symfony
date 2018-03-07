@@ -1,0 +1,10 @@
+# FosUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\Utilisateur
+    from_email:
+        address: webmaster@example.com
+        sender_name: webmaster
+    service:
+        user_manager: pugx_user_manager

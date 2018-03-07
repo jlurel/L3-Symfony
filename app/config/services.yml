@@ -14,6 +14,31 @@ services:
         # if you need to do this, you can override this setting on individual services
         public: false
 
+
+    etudiant.registration.form.type:
+            class: AppBundle\Form\RegistrationEtudiantFormType
+            arguments: [%fos_user.model.user.class%]
+            tags:
+                -
+                    name: form.type
+                    alias: etudiant_registrationtype
+
+    professeur.registration.form.type:
+                class: AppBundle\Form\RegistrationProfesseurFormType
+                arguments: [%fos_user.model.user.class%]
+                tags:
+                    -
+                        name: form.type
+                        alias: professeur_registrationtype
+
+    agent_administratif.registration.form.type:
+                class: AppBundle\Form\RegistrationAgentAdministratifFormType
+                arguments: [%fos_user.model.user.class%]
+                tags:
+                    -
+                        name: form.type
+                        alias: agent_administratif_registrationtype
+
     # makes classes in src/AppBundle available to be used as services
     # this creates a service per class whose id is the fully-qualified class name
     AppBundle\:

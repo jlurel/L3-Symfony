@@ -67,3 +67,51 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+# FosUserBundle Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: main
+    user_class: AppBundle\Entity\Utilisateur
+    from_email:
+        address: webmaster@example.com
+        sender_name: webmaster
+    service:
+        user_manager: pugx_user_manager
+
+# PUGXMultiUserBundle Configuration
+pugx_multi_user:
+  users:
+    professeur:
+        entity:
+          class: AppBundle\Entity\Professeur
+#          factory:
+        registration:
+          form:
+            type: AppBundle\Form\RegistrationProfesseurFormType
+            validation_groups:  [Registration, Default]
+          template: AppBundle:Registration:professeur.form.html.twig
+        profile:
+          form:
+            type: AppBundle\Form\ProfileProfesseurFormType
+            validation_groups:  [Profile, Default]
+    etudiant:
+        entity:
+          class: AppBundle\Entity\Etudiant
+        registration:
+          form:
+            type: AppBundle\Form\RegistrationEtudiantFormType
+          template: AppBundle:Registration:etudiant.form.html.twig
+        profile:
+          form:
+            type: AppBundle\Form\ProfileEtudiantFormType
+    agent_administratif:
+            entity:
+              class: AppBundle\Entity\AgentAdministratif
+            registration:
+              form:
+                type: AppBundle\Form\RegistrationAgentAdministratifFormType
+              template: AppBundle:Registration:agent_administratif.form.html.twig
+            profile:
+              form:
+                type: AppBundle\Form\ProfileAgentAdministratifFormType
