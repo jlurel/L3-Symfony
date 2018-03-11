@@ -1,0 +1,5 @@
+/* Navbar fixed to the top */
+body {
+    min-height: 75rem;
+    padding-top: 100px;
+}

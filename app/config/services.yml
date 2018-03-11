@@ -17,7 +17,7 @@ services:
 
     etudiant.registration.form.type:
             class: AppBundle\Form\RegistrationEtudiantFormType
-            arguments: [%fos_user.model.user.class%]
+            arguments: ['%fos_user.model.user.class%']
             tags:
                 -
                     name: form.type
@@ -25,7 +25,7 @@ services:
 
     professeur.registration.form.type:
                 class: AppBundle\Form\RegistrationProfesseurFormType
-                arguments: [%fos_user.model.user.class%]
+                arguments: ['%fos_user.model.user.class%']
                 tags:
                     -
                         name: form.type
@@ -33,7 +33,7 @@ services:
 
     agent_administratif.registration.form.type:
                 class: AppBundle\Form\RegistrationAgentAdministratifFormType
-                arguments: [%fos_user.model.user.class%]
+                arguments: ['%fos_user.model.user.class%']
                 tags:
                     -
                         name: form.type

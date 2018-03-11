@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Reservation;
+use AppBundle\Form\ReservationFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -10,8 +10,7 @@ class ReservationController extends Controller
 {
     public function addAction(Request $request)
     {
-        $reservation = new Reservation();
-        $form = $this->get('form.factory')->create(Reservation::class, $reservation);
+        $form = $this->createForm(ReservationFormType::class);
 
         $form->handleRequest($request);
 

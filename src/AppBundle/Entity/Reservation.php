@@ -22,7 +22,6 @@ class Reservation
     private $id;
 
     /**
-<<<<<<< HEAD
      * @var int
      *
      * @ORM\Column(name="numReservation", type="integer")
@@ -30,8 +29,6 @@ class Reservation
     private $numReservation;
 
     /**
-=======
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
      * @var \DateTime
      *
      * @ORM\Column(name="dateReservation", type="date")
@@ -41,7 +38,6 @@ class Reservation
     /**
      * @var \DateTime
      *
-<<<<<<< HEAD
      * @ORM\Column(name="heureDebut", type="time")
      */
     private $heureDebut;
@@ -66,12 +62,6 @@ class Reservation
     private $salle;
 
 
-=======
-     * @ORM\Column(name="heureReservation", type="datetime")
-     */
-    private $heureReservation;
-    
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
     /**
      * Get id
      *
@@ -83,7 +73,6 @@ class Reservation
     }
 
     /**
-<<<<<<< HEAD
      * Set numReservation
      *
      * @param integer $numReservation
@@ -108,8 +97,6 @@ class Reservation
     }
 
     /**
-=======
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
      * Set dateReservation
      *
      * @param \DateTime $dateReservation
@@ -134,7 +121,6 @@ class Reservation
     }
 
     /**
-<<<<<<< HEAD
      * Set heureDebut
      *
      * @param \DateTime $heureDebut
@@ -168,23 +154,11 @@ class Reservation
     public function setHeureFin($heureFin)
     {
         $this->heureFin = $heureFin;
-=======
-     * Set heureReservation
-     *
-     * @param \DateTime $heureReservation
-     *
-     * @return Reservation
-     */
-    public function setHeureReservation($heureReservation)
-    {
-        $this->heureReservation = $heureReservation;
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
 
         return $this;
     }
 
     /**
-<<<<<<< HEAD
      * Get heureFin
      *
      * @return \DateTime
@@ -197,7 +171,7 @@ class Reservation
     /**
      * @return Utilisateur
      */
-    public function getDemandeur(): Utilisateur
+    public function getDemandeur()
     {
         return $this->demandeur;
     }
@@ -213,7 +187,7 @@ class Reservation
     /**
      * @return Salle
      */
-    public function getSalle(): Salle
+    public function getSalle()
     {
         return $this->salle;
     }
@@ -224,15 +198,6 @@ class Reservation
     public function setSalle(Salle $salle)
     {
         $this->salle = $salle;
-=======
-     * Get heureReservation
-     *
-     * @return \DateTime
-     */
-    public function getHeureReservation()
-    {
-        return $this->heureReservation;
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
     }
 }
 

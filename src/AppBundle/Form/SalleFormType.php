@@ -3,6 +3,7 @@
 namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -20,7 +21,7 @@ class SalleFormType extends AbstractType
                 'value' => '2'
             ))
             ->add('reservations', CollectionType::class, array(
-                'entry_type' => RegistrationReservationFormType::class
+                'entry_type' => ReservationFormType::class
             ));
     }
 

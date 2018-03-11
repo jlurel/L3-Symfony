@@ -18,7 +18,7 @@ class ReservationFormType extends AbstractType
             ->add('heureDebut', TimeType::class, array('widget' => 'choice'))
             ->add('heureFin', TimeType::class, array('widget' => 'choice'))
             ->add('demandeur', RegistrationUtilisateurFormType::class)
-            ->add('salle', RegistrationSalleFormType::class);
+            ->add('salle', SalleFormType::class);
     }
 
     public function configureOptions(OptionsResolver $resolver)

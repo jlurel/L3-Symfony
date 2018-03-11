@@ -2,23 +2,6 @@ app:
     resource: '@AppBundle/Controller/'
     type: annotation
 
-professeur_registration:
-    path:  /register/professeur
-    defaults: { _controller: AppBundle:RegistrationProfesseur:register }
-
-etudiant_registration:
-    path:  /register/etudiant
-    defaults: { _controller: AppBundle:RegistrationEtudiant:register }
-
-agent_administratif_registration:
-    path:  /register/agent-administratif
-    defaults: { _controller: AppBundle:RegistrationAgentAdministratif:register }
-
-salle_view:
-    path:  /salle/new
-    defaults: { -controller: AppBundle:Salle:add }
-
-
 fos_user_registration_confirmed:
     resource: "@FOSUserBundle/Resources/config/routing/registration.xml"
     prefix: /confirmed
@@ -41,3 +24,24 @@ fos_user_resetting:
 fos_user_change_password:
     resource: "@FOSUserBundle/Resources/config/routing/change_password.xml"
     prefix: /profile
+
+
+professeur_registration:
+    path:  /register/professeur
+    defaults: { _controller: AppBundle:RegistrationProfesseur:register }
+
+etudiant_registration:
+    path:  /register/etudiant
+    defaults: { _controller: AppBundle:RegistrationEtudiant:register }
+
+agent_administratif_registration:
+    path:  /register/agent-administratif
+    defaults: { _controller: AppBundle:RegistrationAgentAdministratif:register }
+
+salle_add:
+    path:  /salle/add
+    defaults: { _controller: AppBundle:Salle:add }
+
+reservation_add:
+    path: /reservation/add
+    defaults: { _controller: AppBundle:Reservation:add }

@@ -23,9 +23,7 @@ class RegistrationProfesseurFormType extends AbstractType
             ->add('ville', TextType::class)
             ->add('telephone', IntegerType::class)
             ->add('dateNaissance', DateType::class, array('widget' => 'single_text'))
-            ->add('reservations', CollectionType::class, array(
-                'entry_type' => ReservationFormType::class
-            ));
+        ;
 
     }
 

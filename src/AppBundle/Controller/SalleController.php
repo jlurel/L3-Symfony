@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Entity\Salle;
+use AppBundle\Form\SalleFormType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
@@ -10,8 +10,7 @@ class SalleController extends Controller
 {
     public function addAction(Request $request)
     {
-        $salle = new Salle();
-        $form = $this->get('form.factory')->create(Salle::class, $salle);
+        $form = $this->createForm(SalleFormType::class);
 
         $form->handleRequest($request);
 
@@ -25,6 +24,8 @@ class SalleController extends Controller
             $this->addFlash('success', 'Salle bien enregistrée');
             return $this->redirect('salle_view', array('id' => $salle->getId()));
         }
+
+        echo $request->getLocale();
 
         return $this->render('Salle/add.form.html.twig', array(
             'salle_form' => $form->createView(),

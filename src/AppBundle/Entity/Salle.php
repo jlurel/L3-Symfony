@@ -2,10 +2,8 @@
 
 namespace AppBundle\Entity;
 
-<<<<<<< HEAD
 use Doctrine\Common\Collections\ArrayCollection;
-=======
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -32,6 +30,12 @@ class Salle
      */
     private $numSalle;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Etage", inversedBy="salles")
+     */
+    private $etage;
+
     /**
      * @var bool
      *
@@ -39,7 +43,6 @@ class Salle
      */
     private $disponibilite;
 
-<<<<<<< HEAD
     /**
      * @var bool
      *
@@ -52,8 +55,14 @@ class Salle
      */
     private $reservations;
 
-=======
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
+    /**
+     * Salle constructor.
+     */
+    public function __construct()
+    {
+        $this->reservations = new ArrayCollection();
+    }
+
 
     /**
      * Get id
@@ -63,10 +72,6 @@ class Salle
     public function getId()
     {
         return $this->id;
-<<<<<<< HEAD
-        $this->reservations = new ArrayCollection();
-=======
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
     }
 
     /**
@@ -94,6 +99,24 @@ class Salle
     }
 
     /**
+     * @return Etage
+     */
+    public function getEtage()
+    {
+        return $this->etage;
+    }
+
+    /**
+     * @param Etage $etage
+     */
+    public function setEtage(Etage $etage)
+    {
+        $this->etage = $etage;
+    }
+
+
+
+    /**
      * Set disponibilite
      *
      * @param boolean $disponibilite
@@ -116,7 +139,6 @@ class Salle
     {
         return $this->disponibilite;
     }
-<<<<<<< HEAD
 
     /**
      * Set contientProjecteur
@@ -143,14 +165,41 @@ class Salle
     }
 
     /**
+     * Ajouter reservation
+     * @param Reservation $reservation
+     *
+     * @return Salle
+     */
+    public function ajouterReservation(Reservation $reservation)
+    {
+        $this->reservations[] = $reservation;
+        $reservation->setSalle();
+
+        return $this;
+    }
+
+    /**
+     * Supprimer reservation
+     * @param Reservation $reservation
+     */
+    public function supprimerReservation(Reservation $reservation)
+    {
+        $this->reservations->removeElement($reservation);
+    }
+
+    /**
      * @return Collection|Reservation[]
      */
     public function getReservations()
     {
         return $this->reservations;
     }
-}
-=======
-}
 
->>>>>>> ed3011fc1e6bc1ea52415db0577c1957b9aae0dc
+    /**
+     * @return integer
+     */
+    public function getNombreReservations()
+    {
+        return $this->reservations->count();
+    }
+}
