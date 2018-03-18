@@ -1,8 +1,22 @@
 {% trans_default_domain 'FOSUserBundle' %}
 
-{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register'}}) }}
+<h2 class="h3 mb3 font-weight-normal">Créer un compte</h2>
+<form action="
+
+{% if app.request.attributes.get('_route') == 'etudiant_registration' %}
+{{ path('etudiant_registration') }}
+{% endif %}
+
+{% if app.request.attributes.get('_route') == 'professeur_registration' %}
+{{ path('professeur_registration') }}
+{% endif %}
+
+{% if app.request.attributes.get('_route') == 'agent_administratif_registration' %}
+{{ path('agent_administratif_registration') }}
+{% endif %}
+" method="POST" class="fos_user_registration_register">
     {{ form_widget(form) }}
     <div>
         <input type="submit" value="{{ 'registration.submit'|trans }}" />
     </div>
-{{ form_end(form) }}
+</form>

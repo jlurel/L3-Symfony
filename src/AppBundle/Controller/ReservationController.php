@@ -22,7 +22,7 @@ class ReservationController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Réservation bien enregistrée');
-            return $this->redirect('reservation_view', array('id' => $reservation->getId()));
+            return $this->redirect('reservation_view', array('id' => $reservation->getNumReservation()));
         }
 
         return $this->render('Reservation/add.form.html.twig', array(

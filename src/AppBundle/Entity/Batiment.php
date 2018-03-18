@@ -15,18 +15,9 @@ use Doctrine\ORM\Mapping as ORM;
 class Batiment
 {
     /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
-
-    /**
      * @var string
-     *
-     * @ORM\Column(name="idBatiment", type="string", length=4, unique=true)
+     * @ORM\Id
+     * @ORM\Column(name="id", type="string", length=4, unique=true)
      */
     private $idBatiment;
 
@@ -43,16 +34,6 @@ class Batiment
         $this->etages = new ArrayCollection();
     }
 
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set idBatiment

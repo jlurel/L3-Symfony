@@ -2,6 +2,8 @@
 
 namespace AppBundle\Form;
 
+use AppBundle\Entity\Etage;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
@@ -13,7 +15,10 @@ class SalleFormType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('numSalle', IntegerType::class)
+        $builder
+            ->add('numEtage', EntityType::class, array('class' => Etage::class, 'choice_label' => 'numEtage'))
+            ->add('numSalle', IntegerType::class)
+            ->add('capacite', IntegerType::class)
             ->add('disponibilite', RadioType::class, array(
                 'value' => '2'
             ))

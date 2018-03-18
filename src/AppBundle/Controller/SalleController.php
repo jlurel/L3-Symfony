@@ -22,10 +22,8 @@ class SalleController extends Controller
             $em->flush();
 
             $this->addFlash('success', 'Salle bien enregistrée');
-            return $this->redirect('salle_view', array('id' => $salle->getId()));
+            return $this->redirect('salle_view', array('id' => $salle->getNumSalle()));
         }
-
-        echo $request->getLocale();
 
         return $this->render('Salle/add.form.html.twig', array(
             'salle_form' => $form->createView(),

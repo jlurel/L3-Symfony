@@ -22,7 +22,7 @@ class RegistrationProfesseurFormType extends AbstractType
             ->add('codePostal', IntegerType::class)
             ->add('ville', TextType::class)
             ->add('telephone', IntegerType::class)
-            ->add('dateNaissance', DateType::class, array('widget' => 'single_text'))
+            ->add('dateNaissance', DateType::class, array('widget' => 'single_text', 'format' => 'dd/MM/yyyy'))
         ;
 
     }

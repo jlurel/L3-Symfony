@@ -58,3 +58,32 @@ services:
     # AppBundle\Service\ExampleService:
     #     arguments:
     #         $someArgument: 'some_value'
+
+
+    admin.reservation:
+        class: AppBundle\Admin\ReservationAdmin
+        arguments: [~, AppBundle\Entity\Reservation, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Reservation }
+        public: true
+
+    admin.salle:
+        class: AppBundle\Admin\SalleAdmin
+        arguments: [~, AppBundle\Entity\Salle, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Salle}
+        public: true
+
+    admin.etage:
+        class: AppBundle\Admin\EtageAdmin
+        arguments: [~, AppBundle\Entity\Etage, ~]
+        tags:
+            - { name: sonata.admin, manager_type: orm, label: Etage}
+        public: true
+
+    admin.batiment:
+            class: AppBundle\Admin\BatimentAdmin
+            arguments: [~, AppBundle\Entity\Batiment, ~]
+            tags:
+                - { name: sonata.admin, manager_type: orm, label: Batiment}
+            public: true

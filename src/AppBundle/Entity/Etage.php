@@ -16,24 +16,16 @@ class Etage
 {
     /**
      * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
      * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
+     * @ORM\Column(name="id", type="integer")
      */
-    private $id;
+    private $numEtage;
 
     /**
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Batiment", inversedBy="etages")
      */
     private $batiment;
-
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="numEtage", type="integer")
-     */
-    private $numEtage;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="etage")
@@ -48,16 +40,6 @@ class Etage
         $this->salles = new ArrayCollection();
     }
 
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set numEtage
@@ -97,6 +79,12 @@ class Etage
     public function setBatiment($batiment)
     {
         $this->batiment = $batiment;
+    }
+
+    public function getLibelleEtage()
+    {
+        $libelleEtage = $this->batiment->getIdBatiment()+$this->numEtage;
+        return $libelleEtage;
     }
 
     /**

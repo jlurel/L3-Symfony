@@ -12,19 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Reservation
 {
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
 
     /**
      * @var int
-     *
-     * @ORM\Column(name="numReservation", type="integer")
+     * @ORM\Id
+     * @ORM\Column(name="id", type="integer")
      */
     private $numReservation;
 
@@ -56,21 +48,11 @@ class Reservation
     private $demandeur;
 
     /**
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle", inversedBy="reservations")
      * @ORM\JoinColumn(nullable=true)
      */
     private $salle;
-
-
-    /**
-     * Get id
-     *
-     * @return int
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set numReservation
