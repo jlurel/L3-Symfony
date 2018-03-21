@@ -1,15 +1,18 @@
 {% extends 'base.html.twig' %}
-
+{% block stylesheet %}
+    <link href="{{ asset('css/profile.css') }}" rel="stylesheet" type="text/css" media="screen,projection" />
+   {% endblock %}
 {% block body %}
 
     <div class="container">
         <div class="row">
             <div class="col-xs-12">
-                <h1>Ajouter une réservation</h1>
+                <h1><font color="white">Ajouter une réservation ou  <a href="/search">Rechercher une salle</a> </h1>
                 {{ form_start(reservation_form) }}
                 {{ form_widget(reservation_form) }}
                 <button type="submit" class="btn btn-primary">Enregistrer</button>
                 {{ form_end(reservation_form) }}
+
             </div>
         </div>
     </div>

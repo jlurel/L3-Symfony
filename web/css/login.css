@@ -1,0 +1,15 @@
+body
+{
+    background: url('https://www.pantheonsorbonne.fr/uploads/pics/2016.05.20_Top10_AmphitheatreSorbonne.png') fixed;
+    background-size: cover;
+    padding:50px;
+    margin: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+
+form
+{
+    background: rgba(242, 242, 242, 0.7);
+
+}
