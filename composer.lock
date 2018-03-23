@@ -742,33 +742,33 @@
         },
         {
             "name": "doctrine/inflector",
-            "version": "v1.1.0",
+            "version": "v1.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/inflector.git",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae"
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/inflector/zipball/90b2128806bfde671b6952ab8bea493942c1fdae",
-                "reference": "90b2128806bfde671b6952ab8bea493942c1fdae",
+                "url": "https://api.github.com/repos/doctrine/inflector/zipball/e11d84c6e018beedd929cff5220969a3c6d1d462",
+                "reference": "e11d84c6e018beedd929cff5220969a3c6d1d462",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.2"
+                "php": "^7.0"
             },
             "require-dev": {
-                "phpunit/phpunit": "4.*"
+                "phpunit/phpunit": "^6.2"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
-                "psr-0": {
-                    "Doctrine\\Common\\Inflector\\": "lib/"
+                "psr-4": {
+                    "Doctrine\\Common\\Inflector\\": "lib/Doctrine/Common/Inflector"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -805,7 +805,7 @@
                 "singularize",
                 "string"
             ],
-            "time": "2015-11-06T14:35:42+00:00"
+            "time": "2017-07-22T12:18:28+00:00"
         },
         {
             "name": "doctrine/instantiator",
@@ -2323,65 +2323,59 @@
         },
         {
             "name": "sonata-project/admin-bundle",
-            "version": "3.33.0",
+            "version": "3.32.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "907fad7382eee6fa518bc4210550ef42f4125e00"
+                "reference": "7f07dbf2cb5abf0e7eedafb08e78d6e1722afd1d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/907fad7382eee6fa518bc4210550ef42f4125e00",
-                "reference": "907fad7382eee6fa518bc4210550ef42f4125e00",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/7f07dbf2cb5abf0e7eedafb08e78d6e1722afd1d",
+                "reference": "7f07dbf2cb5abf0e7eedafb08e78d6e1722afd1d",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": "^2.7",
-                "doctrine/inflector": "^1.1",
-                "knplabs/knp-menu-bundle": "^2.2",
+                "doctrine/common": "^2.2",
+                "doctrine/inflector": "^1.0",
+                "knplabs/knp-menu-bundle": "^2.1.1",
                 "php": "^5.6 || ^7.0",
                 "sonata-project/block-bundle": "^3.11",
-                "sonata-project/core-bundle": "^3.9",
-                "sonata-project/exporter": "^1.8",
+                "sonata-project/core-bundle": "^3.6",
+                "sonata-project/exporter": "^1.7.1",
                 "symfony/asset": "^2.8 || ^3.2 || ^4.0",
                 "symfony/class-loader": "^2.8 || ^3.2",
                 "symfony/config": "^2.8 || ^3.2 || ^4.0",
                 "symfony/console": "^2.8 || ^3.2 || ^4.0",
                 "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
-                "symfony/event-dispatcher": "^2.8 || ^3.2 || ^4.0",
                 "symfony/expression-language": "^2.8 || ^3.2 || ^4.0",
                 "symfony/form": "^2.8 || ^3.2 || ^4.0",
-                "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
                 "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
-                "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
-                "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
                 "symfony/property-access": "^2.8 || ^3.2 || ^4.0",
                 "symfony/routing": "^2.8 || ^3.2 || ^4.0",
                 "symfony/security-acl": "^2.8 || ^3.0",
                 "symfony/security-bundle": "^2.8 || ^3.2 || ^4.0",
-                "symfony/security-core": "^2.8 || ^3.2 || ^4.0",
-                "symfony/security-csrf": "^2.8 || ^3.2 || ^4.0",
                 "symfony/templating": "^2.8 || ^3.2 || ^4.0",
                 "symfony/translation": "^2.8 || ^3.2 || ^4.0",
                 "symfony/twig-bridge": "^2.8 || ^3.2 || ^4.0",
                 "symfony/twig-bundle": "^2.8 || ^3.2 || ^4.0",
                 "symfony/validator": "^2.8 || ^3.2 || ^4.0",
-                "twig/extensions": "^1.5",
+                "twig/extensions": "^1.0",
                 "twig/twig": "^1.34 || ^2.0"
             },
             "conflict": {
-                "jms/di-extra-bundle": "<1.9",
-                "sonata-project/media-bundle": "<3.7",
-                "sonata-project/user-bundle": "<3.3"
+                "jms/di-extra-bundle": "<1.7.0",
+                "sonata-project/exporter": "1.6.0",
+                "sonata-project/media-bundle": "<3.7.0",
+                "sonata-project/user-bundle": "<3.3.0"
             },
             "require-dev": {
-                "jms/di-extra-bundle": "^1.9",
-                "jms/translation-bundle": "^1.4",
+                "jms/di-extra-bundle": "^1.7",
+                "jms/translation-bundle": "^1.2",
                 "matthiasnoback/symfony-dependency-injection-test": "^1.1",
                 "sensio/generator-bundle": "^3.1",
-                "sonata-project/intl-bundle": "^2.4",
-                "symfony/filesystem": "^2.8 || ^3.2 || ^4.0",
-                "symfony/phpunit-bridge": "^4.0",
+                "sonata-project/intl-bundle": "^2.2.4",
+                "symfony/phpunit-bridge": "^3.4 || ^4.0",
                 "symfony/yaml": "^2.8 || ^3.2 || ^4.0"
             },
             "suggest": {
@@ -2424,20 +2418,20 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2018-03-12T10:09:45+00:00"
+            "time": "2018-02-28T16:59:32+00:00"
         },
         {
             "name": "sonata-project/block-bundle",
-            "version": "3.12.1",
+            "version": "3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataBlockBundle.git",
-                "reference": "8196b71f73282c884f2176a1b90ba05cb6c99eaa"
+                "reference": "e88bf24dcf1c89db9b7ad68d164f339465f15b7a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/8196b71f73282c884f2176a1b90ba05cb6c99eaa",
-                "reference": "8196b71f73282c884f2176a1b90ba05cb6c99eaa",
+                "url": "https://api.github.com/repos/sonata-project/SonataBlockBundle/zipball/e88bf24dcf1c89db9b7ad68d164f339465f15b7a",
+                "reference": "e88bf24dcf1c89db9b7ad68d164f339465f15b7a",
                 "shasum": ""
             },
             "require": {
@@ -2446,15 +2440,8 @@
                 "sonata-project/cache": "^1.0 || ^2.0",
                 "sonata-project/core-bundle": "^3.4",
                 "symfony/asset": "^2.8 || ^3.2 || ^4.0",
-                "symfony/config": "^2.8 || ^3.2 || ^4.0",
-                "symfony/console": "^2.8 || ^3.2 || ^4.0",
-                "symfony/dependency-injection": "^2.8 || ^3.2 || ^4.0",
-                "symfony/event-dispatcher": "^2.8 || ^3.2 || ^4.0",
                 "symfony/form": "^2.8 || ^3.2 || ^4.0",
-                "symfony/framework-bundle": "^2.8 || ^3.2 || ^4.0",
-                "symfony/http-foundation": "^2.8 || ^3.2 || ^4.0",
                 "symfony/http-kernel": "^2.8 || ^3.2 || ^4.0",
-                "symfony/options-resolver": "^2.8 || ^3.2 || ^4.0",
                 "symfony/templating": "^2.8 || ^3.2 || ^4.0",
                 "symfony/twig-bundle": "^2.8 || ^3.2 || ^4.0",
                 "twig/twig": "^1.34 || ^2.0"
@@ -2466,7 +2453,6 @@
                 "jms/di-extra-bundle": "^1.7",
                 "knplabs/knp-menu-bundle": "^2.0",
                 "sonata-project/admin-bundle": "^3.22",
-                "symfony/debug": "^2.8 || ^3.2 || ^4.0",
                 "symfony/phpunit-bridge": "^4.0",
                 "symfony/stopwatch": "^2.8 || ^3.2 || ^4.0"
             },
@@ -2510,7 +2496,7 @@
                 "block",
                 "sonata"
             ],
-            "time": "2018-03-12T10:03:52+00:00"
+            "time": "2018-02-08T09:59:45+00:00"
         },
         {
             "name": "sonata-project/cache",
@@ -3716,30 +3702,31 @@
         },
         {
             "name": "twig/twig",
-            "version": "v1.35.3",
+            "version": "v2.4.6",
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "b48680b6eb7d16b5025b9bfc4108d86f6b8af86f"
+                "reference": "d2117ec118c1ff3d28ccddca8212d82787a4809f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/b48680b6eb7d16b5025b9bfc4108d86f6b8af86f",
-                "reference": "b48680b6eb7d16b5025b9bfc4108d86f6b8af86f",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/d2117ec118c1ff3d28ccddca8212d82787a4809f",
+                "reference": "d2117ec118c1ff3d28ccddca8212d82787a4809f",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "php": "^7.0",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "require-dev": {
                 "psr/container": "^1.0",
-                "symfony/debug": "^2.7",
-                "symfony/phpunit-bridge": "^3.3"
+                "symfony/debug": "~2.7",
+                "symfony/phpunit-bridge": "~3.3@dev"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.35-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -3777,7 +3764,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2018-03-20T04:25:58+00:00"
+            "time": "2018-03-03T16:23:01+00:00"
         }
     ],
     "packages-dev": [
