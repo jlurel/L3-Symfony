@@ -25,7 +25,8 @@ security:
             form_login:
                 login_path: /login
                 check_path: /login_check
-                default_target_path: /
+                default_target_path: /reservation/add
+                always_use_default_target_path: true
                 csrf_token_generator: security.csrf.token_manager
 
             logout:
@@ -36,9 +37,11 @@ security:
 
             # activate different ways to authenticate
     access_control:
+        - { path: ^/$, role: ROLE_USER }
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin$, role: ROLE_ADMIN }
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~

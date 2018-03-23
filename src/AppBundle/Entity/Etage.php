@@ -27,6 +27,8 @@ class Etage
      */
     private $batiment;
 
+
+
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="etage")
      */

@@ -16,7 +16,7 @@ class SalleFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('numEtage', EntityType::class, array('class' => Etage::class, 'choice_label' => 'numEtage'))
+            ->add('etage', EntityType::class, array('class' => Etage::class, 'choice_label' => 'numEtage'))
             ->add('numSalle', IntegerType::class)
             ->add('capacite', IntegerType::class)
             ->add('disponibilite', RadioType::class, array(
@@ -24,9 +24,6 @@ class SalleFormType extends AbstractType
             ))
             ->add('contientProjecteur', RadioType::class, array(
                 'value' => '2'
-            ))
-            ->add('reservations', CollectionType::class, array(
-                'entry_type' => ReservationFormType::class
             ));
     }
 
