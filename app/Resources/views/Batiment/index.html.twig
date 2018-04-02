@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Liste des batiments</h1>
+
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Site</th>
+                        <th scope="col">Libelle</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for batiment in batiments %}
+                        <tr>
+                            <td scope="row"><a href="{{ path('batiment_show', { 'id': batiment.id }) }}">{{ batiment.id }}</a></td>
+                            <td>{{ batiment.site.libelle }}</td>
+                            <td>{{ batiment.libelle }}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ path('batiment_show', { 'id': batiment.id }) }}">Afficher</a>
+                                <a class="btn btn-primary" href="{{ path('batiment_edit', { 'id': batiment.id }) }}">Editer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                <p>
+                    <a class="btn btn-primary" href="{{ path('batiment_new') }}">Ajouter un nouveau batiment</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

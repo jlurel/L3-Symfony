@@ -88,6 +88,13 @@ services:
                 - { name: sonata.admin, manager_type: orm, label: Batiment}
             public: true
 
+    admin.site:
+                class: AppBundle\Admin\SiteAdmin
+                arguments: [~, AppBundle\Entity\Site, ~]
+                tags:
+                    - { name: sonata.admin, manager_type: orm, label: Site}
+                public: true
+
 
     appbundle.service.listener:
             class: AppBundle\Listener\LoadDataListener

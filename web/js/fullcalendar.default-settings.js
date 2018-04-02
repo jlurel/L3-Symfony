@@ -3,7 +3,7 @@ $(function () {
         header: {
             left: 'prev, next',
             center: 'title',
-            right: 'month, agendaWeek, agendaDay,'
+            right: 'month, agendaWeek, agendaDay'
         },
         timezone: ('Europe/London'),
         businessHours: {
@@ -138,7 +138,7 @@ $(function () {
             data: 'title='+title+'&start='+startTime+'&end='+endTime,
             type: "POST",
             success: function(json) {
-                $("#calendar-holder").fullCalendar('rerenderEvents');
+                $("#calendar-holder").fullCalendar('refetchEvents');
             }
         });
 

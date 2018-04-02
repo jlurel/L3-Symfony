@@ -9,16 +9,17 @@
 namespace AppBundle\Listener;
 
 use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent;
-use AppBundle\Entity\CalendarEvent as CalendarEvent;
+use AppBundle\Entity\Reservation as CalendarEvent;
+use AppBundle\Entity\Reservation;
 
 class LoadDataListener
 {
     /**
-     * @param CalendarEvent $calendarEvent
+     * @param Reservation $calendarEvent
      *
      * @return FullCalendarEvent[]
      */
-    public function loadData(CalendarEvent $calendarEvent)
+    public function loadData(Reservation $calendarEvent)
     {
         /*
         $startDate = $calendarEvent->getStartDate();
@@ -27,8 +28,8 @@ class LoadDataListener
 
         //You may want do a custom query to populate the events
 
-        $calendarEvent->addEvent(new CalendarEvent('Event Title 1', new \DateTime()));
-        $calendarEvent->addEvent(new CalendarEvent('Event Title 2', new \DateTime()));
+        $calendarEvent->addEvent(new Reservation('Event Title 1', new \DateTime()));
+        $calendarEvent->addEvent(new Reservation('Event Title 2', new \DateTime()));
         */
         return $calendarEvent->toArray();
     }

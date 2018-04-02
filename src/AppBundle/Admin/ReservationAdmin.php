@@ -16,8 +16,10 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\TimeType;
 
 class ReservationAdmin extends AbstractAdmin
@@ -25,37 +27,30 @@ class ReservationAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form
-            ->with('Propriétés', array('class' => 'col-md-7'))
-                ->add('numReservation', IntegerType::class)
-                ->add('demandeur', EntityType::class, array('class' => Utilisateur::class, 'choice_label' => 'nom'))
-                ->add('salle', EntityType::class, array('class' => Salle::class, 'choice_label' => 'etage numSalle'))
+            ->with('Propriétés', array('class' => 'col-md-3'))
+                ->add('title', TextType::class)
+                ->add('salle', EntityType::class, array('class' => Salle::class))
             ->end()
-            ->with('Créneau', array('class' => 'col-md-5'))
-                ->add('dateReservation', DateType::class, array('widget' => 'choice'))
-                ->add('heureDebut', TimeType::class, array('widget' => 'choice'))
-                ->add('heureFin', TimeType::class, array('widget' => 'choice'))
+            ->with('Créneau', array('class' => 'col-md-9'))
+                ->add('startDate', DateTimeType::class, array('widget' => 'choice'))
+                ->add('endDate', DateTimeType::class, array('widget' => 'choice'))
             ->end()
         ;
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)
     {
-        $filter->add('numReservation')
-            ->add('dateReservation')
-            ->add('heureDebut')
-            ->add('heureFin')
-            ->add('demandeur')
-            ->add('salle');
+        $filter->add('title')
+            ->add('startDate')
+            ->add('endDate');
     }
 
     protected function configureListFields(ListMapper $list)
     {
-        $list->addIdentifier('numReservation')
-            ->add('dateReservation')
-            ->add('heureDebut')
-            ->add('heureFin')
-            ->add('demandeur')
-            ->add('salle');
+        $list->addIdentifier('title')
+            ->add('startDate')
+            ->add('endDate');
+        $list->add('_action', null, array('actions' => array('edit' => [], 'delete' => [])));
     }
 
 }

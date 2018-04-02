@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Batiment
@@ -15,16 +16,30 @@ use Doctrine\ORM\Mapping as ORM;
 class Batiment
 {
     /**
-     * @var string
+     * @var int
      * @ORM\Id
-     * @ORM\Column(name="id", type="string", length=4, unique=true)
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $idBatiment;
+    private $id;
+
+    /**
+     * @var string
+     * @ORM\Column(name="libelle", type="string", length=255)
+     * @Assert\NotBlank()
+     */
+    private $libelle;
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Etage", mappedBy="batiment")
      */
     private $etages;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Site", inversedBy="batiments")
+     * @Assert\NotBlank()
+     */
+    private $site;
 
     /**
      * Batiment constructor.
@@ -34,30 +49,49 @@ class Batiment
         $this->etages = new ArrayCollection();
     }
 
-
     /**
-     * Set idBatiment
+     * Get id
      *
-     * @param string $idBatiment
-     *
-     * @return Batiment
+     * @return integer
      */
-    public function setIdBatiment($idBatiment)
+    public function getId()
     {
-        $this->idBatiment = $idBatiment;
-
-        return $this;
+        return $this->id;
     }
 
     /**
-     * Get idBatiment
-     *
      * @return string
      */
-    public function getIdBatiment()
+    public function getLibelle()
     {
-        return $this->idBatiment;
+        return $this->libelle;
     }
+
+    /**
+     * @param string $libelle
+     */
+    public function setLibelle($libelle)
+    {
+        $this->libelle = $libelle;
+    }
+
+    /**
+     * @return Site
+     */
+    public function getSite()
+    {
+        return $this->site;
+    }
+
+    /**
+     * @param Site $site
+     */
+    public function setSite($site)
+    {
+        $this->site = $site;
+    }
+
+
 
     /**
      * Ajouter etage
@@ -67,7 +101,7 @@ class Batiment
      */
     public function ajouterSalle(Etage $etage)
     {
-        $this->etages[] = $etage;
+        $this->etages->add($etage);
         $etage->setBatiment($this);
 
         return $this;
@@ -96,6 +130,11 @@ class Batiment
     public function getNombreEtages()
     {
         return $this->etages->count();
+    }
+
+    public function __toString()
+    {
+        return "Site : " .$this->site. " - Batiment : " .$this->libelle;
     }
 }
 

@@ -14,22 +14,6 @@ agent_administratif_registration:
     path:  /register/agent-administratif
     defaults: { _controller: AppBundle:RegistrationAgentAdministratif:register }
 
-salle_add:
-    path:  /salle/add
-    defaults: { _controller: AppBundle:Salle:add }
-
-etage_add:
-    path: /etage/add
-    defaults: { _controller: AppBundle:Etage:add }
-
-batiment_add:
-    path: /batiment/add
-    defaults: { _controller: AppBundle:Batiment:add }
-
-reservation_add:
-    path: /reservation/add
-    defaults: { _controller: AppBundle:Reservation:add }
-
 fos_user_security_login:
     path: /login
     defaults: { _controller: AppBundle:Security:login }
@@ -79,30 +63,30 @@ ancarebeca_fullcalendar:
 
 calendrier:
     path: /calendrier
-    defaults: { _controller: AppBundle:CalendarEvent:load }
+    defaults: { _controller: AppBundle:Reservation:load }
     methods: [GET, POST]
 
 appBundle_resize:
     path:     /calendrier/resize
-    defaults: { _controller: AppBundle:CalendarEvent:resizeEvent }
+    defaults: { _controller: AppBundle:Reservation:resizeEvent }
     methods:  [GET, POST]
 
 appBundle_drop:
     path:     /calendrier/drop
-    defaults: { _controller: AppBundle:CalendarEvent:dropEvent }
+    defaults: { _controller: AppBundle:Reservation:dropEvent }
     methods:  [GET, POST]
 
 appBundle_delete:
     path:     /calendrier/delete
-    defaults: { _controller: AppBundle:CalendarEvent:deleteEvent }
+    defaults: { _controller: AppBundle:Reservation:deleteEvent }
     methods:  [GET, POST]
 
 appBundle_editEvent:
     path:     /calendrier/edit/title
-    defaults: { _controller: AppBundle:CalendarEvent:editEvent }
+    defaults: { _controller: AppBundle:Reservation:editEvent }
     methods:  [GET, POST]
 
 appBundle_add:
     path:     /calendrier/add
-    defaults: { _controller: AppBundle:CalendarEvent:addEvent }
+    defaults: { _controller: AppBundle:Reservation:addEvent }
     methods:  [GET, POST]

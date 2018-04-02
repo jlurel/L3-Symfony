@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Etage
@@ -18,16 +19,21 @@ class Etage
      * @var int
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="num_etage", type="integer")
      */
     private $numEtage;
 
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Batiment", inversedBy="etages")
      */
     private $batiment;
-
-
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Salle", mappedBy="etage")
@@ -40,6 +46,16 @@ class Etage
     public function __construct()
     {
         $this->salles = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
 
@@ -83,12 +99,6 @@ class Etage
         $this->batiment = $batiment;
     }
 
-    public function getLibelleEtage()
-    {
-        $libelleEtage = $this->batiment->getIdBatiment()+$this->numEtage;
-        return $libelleEtage;
-    }
-
     /**
      * Ajouter salle
      * @param Salle $salle
@@ -97,7 +107,7 @@ class Etage
      */
     public function ajouterSalle(Salle $salle)
     {
-        $this->salles[] = $salle;
+        $this->salles->add($salle);
         $salle->setEtage($this);
 
         return $this;
@@ -126,6 +136,14 @@ class Etage
     public function getNombreSalles()
     {
         return $this->salles->count();
+    }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->batiment. " " .strval($this->numEtage);
     }
 
 

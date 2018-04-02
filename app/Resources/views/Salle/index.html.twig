@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1>Liste des salles</h1>
+
+                <table class="table table-bordered table-striped">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Id</th>
+                        <th scope="col">Numero Salle</th>
+                        <th scope="col">Capacite</th>
+                        <th scope="col">Contientprojecteur</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for salle in salles %}
+                        <tr>
+                            <td><a href="{{ path('salle_show', { 'id': salle.id }) }}">{{ salle.id }}</a></td>
+                            <td>{{ salle.numSalle }}</td>
+                            <td>{{ salle.capacite }}</td>
+                            <td>{% if salle.contientProjecteur %}Yes{% else %}No{% endif %}</td>
+                            <td>
+                                <a class="btn btn-primary" href="{{ path('salle_show', { 'id': salle.id }) }}">Afficher</a>
+                                <a class="btn btn-primary" href="{{ path('salle_edit', { 'id': salle.id }) }}">Editer</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+                        <a class="btn btn-primary" href="{{ path('salle_new') }}">Ajouter une salle</a>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

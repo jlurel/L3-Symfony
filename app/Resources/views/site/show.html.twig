@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h1>Site</h1>
+
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <th scope="col">Id</th>
+                        <td>{{ site.id }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Libelle</th>
+                        <td>{{ site.libelle }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Adresse</th>
+                        <td>{{ site.adresse }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Codepostal</th>
+                        <td>{{ site.codePostal }}</td>
+                    </tr>
+                    <tr>
+                        <th scope="col">Ville</th>
+                        <td>{{ site.ville }}</td>
+                    </tr>
+                    </tbody>
+                </table>
+                <p>
+                    <a class="btn btn-primary" href="{{ path('site_edit', { 'id': site.id }) }}">Editer</a>
+                </p>
+                <p>
+                    {{ form_start(delete_form) }}
+                    <button type="submit" class="btn btn-danger">Supprimer</button>
+                    {{ form_end(delete_form) }}
+                </p>
+                <p>
+                    <a class="btn btn-light" href="{{ path('site_index') }}">Retourner à la liste</a>
+                </p>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

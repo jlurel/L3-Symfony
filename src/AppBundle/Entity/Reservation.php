@@ -1,169 +1,446 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: Katsuo
+ * Date: 22/03/2018
+ * Time: 11:41
+ */
 
 namespace AppBundle\Entity;
 
+use AncaRebeca\FullCalendarBundle\Model\FullCalendarEvent as BaseEvent;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Reservation
  *
- * @ORM\Table(name="reservation")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\ReservationRepository")
+ * @ORM\Table(name="calendar_event")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\Reservation")
  */
-class Reservation
+class Reservation extends BaseEvent
 {
-
     /**
-     * @var int
-     * @ORM\Id
+     * @var integer
      * @ORM\Column(name="id", type="integer")
-     */
-    private $numReservation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="dateReservation", type="date")
-     */
-    private $dateReservation;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="heureDebut", type="time")
-     */
-    private $heureDebut;
-
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="heureFin", type="time")
-     */
-    private $heureFin;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Utilisateur", inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=true)
-     */
-    private $demandeur;
-
-    /**
      * @ORM\Id
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Salle", inversedBy="reservations")
-     * @ORM\JoinColumn(nullable=true)
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $salle;
+    protected $id;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="title",  nullable = true)
+     */
+    protected $title;
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", name="allDay", nullable = true)
+     */
+    protected $allDay = false;
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", name="event_start")
+     */
+    protected $startDate;
+    /**
+     * @var \DateTime
+     * @ORM\Column(type="datetime", name="event_end")
+     */
+    protected $endDate;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="url", nullable = true)
+     */
+    protected $url;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="className", nullable = true)
+     */
+    protected $className;
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", name="editable", nullable = true)
+     */
+    protected $editable = true;
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", name="startEditable", nullable = true)
+     */
+    protected $startEditable = true;
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", name="durationEditable", nullable = true)
+     */
+    protected $durationEditable = true;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="rendering", nullable = true)
+     */
+    protected $rendering;
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean", name="overlap", nullable = true)
+     */
+    protected $overlap = false;
+    /**
+     * @var integer
+     * @ORM\Column(type="integer", name="event_constraint", nullable = true)
+     */
+    protected $constraint;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="event_source", nullable = true)
+     */
+    protected $source;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="color", nullable = true)
+     */
+    protected $color;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="backgroundColor", nullable = true)
+     */
+    protected $backgroundColor;
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, name="textColor", nullable = true)
+     */
+    protected $textColor;
+    /**
+     * @var array
+     * @ORM\Column(type="array", name="customFields", nullable = true)
+     */
+    protected $customFields = [];
 
     /**
-     * Set numReservation
-     *
-     * @param integer $numReservation
-     *
-     * @return Reservation
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Batiment", inversedBy="reservations")
      */
-    public function setNumReservation($numReservation)
-    {
-        $this->numReservation = $numReservation;
-
-        return $this;
-    }
+    protected $salle;
 
     /**
-     * Get numReservation
      *
+     */
+    public function __construct()
+     {
+
+     }
+
+    /**
      * @return int
      */
-    public function getNumReservation()
+    public function getId()
     {
-        return $this->numReservation;
+        return $this->id;
     }
 
     /**
-     * Set dateReservation
-     *
-     * @param \DateTime $dateReservation
-     *
-     * @return Reservation
+     * @param int $id
      */
-    public function setDateReservation($dateReservation)
+    public function setId($id)
     {
-        $this->dateReservation = $dateReservation;
-
-        return $this;
+        $this->id = $id;
     }
 
     /**
-     * Get dateReservation
-     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param string $title
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isAllDay()
+    {
+        return $this->allDay;
+    }
+
+    /**
+     * @param boolean $allDay
+     */
+    public function setAllDay($allDay)
+    {
+        $this->allDay = $allDay;
+    }
+
+    /**
      * @return \DateTime
      */
-    public function getDateReservation()
+    public function getStartDate()
     {
-        return $this->dateReservation;
+        return $this->startDate;
     }
 
     /**
-     * Set heureDebut
-     *
-     * @param \DateTime $heureDebut
-     *
-     * @return Reservation
+     * @param \DateTime $startDate
      */
-    public function setHeureDebut($heureDebut)
+    public function setStartDate(\DateTime $startDate)
     {
-        $this->heureDebut = $heureDebut;
-
-        return $this;
+        $this->startDate = $startDate;
     }
 
     /**
-     * Get heureDebut
-     *
      * @return \DateTime
      */
-    public function getHeureDebut()
+    public function getEndDate()
     {
-        return $this->heureDebut;
+        return $this->endDate;
     }
 
     /**
-     * Set heureFin
+     * @param \DateTime $endDate
+     */
+    public function setEndDate(\DateTime $endDate)
+    {
+        $this->endDate = $endDate;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return string
+     */
+    public function getClassName()
+    {
+        return $this->className;
+    }
+
+    /**
+     * @param string $className
+     */
+    public function setClassName($className)
+    {
+        $this->className = $className;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isEditable()
+    {
+        return $this->editable;
+    }
+
+    /**
+     * @param boolean $editable
+     */
+    public function setEditable($editable)
+    {
+        $this->editable = $editable;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isStartEditable()
+    {
+        return $this->startEditable;
+    }
+
+    /**
+     * @param boolean $startEditable
+     */
+    public function setStartEditable($startEditable)
+    {
+        $this->startEditable = $startEditable;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDurationEditable()
+    {
+        return $this->durationEditable;
+    }
+
+    /**
+     * @param boolean $durationEditable
+     */
+    public function setDurationEditable($durationEditable)
+    {
+        $this->durationEditable = $durationEditable;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRendering()
+    {
+        return $this->rendering;
+    }
+
+    /**
+     * @param string $rendering
+     */
+    public function setRendering($rendering)
+    {
+        $this->rendering = $rendering;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isOverlap()
+    {
+        return $this->overlap;
+    }
+
+    /**
+     * @param boolean $overlap
+     */
+    public function setOverlap($overlap)
+    {
+        $this->overlap = $overlap;
+    }
+
+    /**
+     * @return int
+     */
+    public function getConstraint()
+    {
+        return $this->constraint;
+    }
+
+    /**
+     * @param int $constraint
+     */
+    public function setConstraint($constraint)
+    {
+        $this->constraint = $constraint;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSource()
+    {
+        return $this->source;
+    }
+
+    /**
+     * @param string $source
+     */
+    public function setSource($source)
+    {
+        $this->source = $source;
+    }
+
+    /**
+     * @return string
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * @param string $color
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBackgroundColor()
+    {
+        return $this->backgroundColor;
+    }
+
+    /**
+     * @param string $backgroundColor
+     */
+    public function setBackgroundColor($backgroundColor)
+    {
+        $this->backgroundColor = $backgroundColor;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTextColor()
+    {
+        return $this->textColor;
+    }
+
+    /**
+     * @param string $textColor
+     */
+    public function setTextColor($textColor)
+    {
+        $this->textColor = $textColor;
+    }
+
+    /**
+     * @param $name
+     * @param $value
      *
-     * @param \DateTime $heureFin
+     * @return mixed
+     */
+    public function setCustomField($name, $value)
+    {
+        $this->customFields[$name] = $value;
+    }
+
+    /**
+     * @param $name
      *
-     * @return Reservation
+     * @return mixed
      */
-    public function setHeureFin($heureFin)
+    public function getCustomFieldValue($name)
     {
-        $this->heureFin = $heureFin;
-
-        return $this;
+        return $this->customFields[$name];
     }
 
     /**
-     * Get heureFin
+     * @return array
+     */
+    public function getCustomFields()
+    {
+        return $this->customFields;
+    }
+
+    /**
+     * @param $name
      *
-     * @return \DateTime
+     * @return mixed
      */
-    public function getHeureFin()
+    public function removeCustomField($name)
     {
-        return $this->heureFin;
-    }
+        if (!isset($this->customFields[$name]) && !array_key_exists($name, $this->customFields)) {
+            return null;
+        }
 
-    /**
-     * @return Utilisateur
-     */
-    public function getDemandeur()
-    {
-        return $this->demandeur;
-    }
+        $removed = $this->customFields[$name];
+        unset($this->customFields[$name]);
 
-    /**
-     * @param Utilisateur $demandeur
-     */
-    public function setDemandeur(Utilisateur $demandeur)
-    {
-        $this->demandeur = $demandeur;
+        return $removed;
     }
 
     /**
@@ -177,9 +454,72 @@ class Reservation
     /**
      * @param Salle $salle
      */
-    public function setSalle(Salle $salle)
+    public function setSalle($salle): void
     {
         $this->salle = $salle;
     }
-}
 
+    /**
+     * @return array
+     */
+    public function toArray()
+    {
+        $event = [];
+        if (null !== $this->getId()) {
+            $event['id'] = $this->getId();
+        }
+        $event['title']             = $this->getTitle();
+        $event['allDay']            = $this->isAllDay();
+        $event['start']             = $this->getStartDate()->format('Y-m-d\TH:i:s');
+        if (null !== $this->getEndDate()) {
+            $event['end'] = $this->getEndDate()->format('Y-m-d\TH:i:s');
+        }
+        $event['editable']          = $this->isEditable();
+        $event['startEditable']     = $this->isStartEditable();
+        $event['durationEditable']  = $this->isDurationEditable();
+        $event['overlap']           = $this->isOverlap();
+
+
+        if (null !== $this->getUrl()) {
+            $event['url'] = $this->getUrl();
+        }
+
+        if (null !== $this->getBackgroundColor()) {
+            $event['backgroundColor'] = $this->getBackgroundColor();
+        }
+
+        if (null !== $this->getTextColor()) {
+            $event['textColor'] = $this->getTextColor();
+        }
+
+        if (null !== $this->getClassName()) {
+            $event['className'] = $this->getClassName();
+        }
+
+
+        if (null !== $this->getRendering()) {
+            $event['rendering'] = $this->getRendering();
+        }
+
+        if (null !== $this->getConstraint()) {
+            $event['constraint'] = $this->getConstraint();
+        }
+
+        if (null !== $this->getSource()) {
+            $event['source'] = $this->getSource();
+        }
+
+        if (null !== $this->getColor()) {
+            $event['color'] = $this->getColor();
+        }
+
+        if (!empty($this->getCustomFields()))
+        {
+            foreach ($this->getCustomFields() as $field => $value) {
+                $event[$field] = $value;
+            }
+        }
+
+        return $event;
+    }
+}

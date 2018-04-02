@@ -11,13 +11,13 @@ namespace AppBundle\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
-class CalendarEventRepository extends EntityRepository
+class Reservation extends EntityRepository
 {
     public function resizeEvent($idEvent, $startDate, $endDate)
     {
         return $this
             ->createQueryBuilder('e')
-            ->update('AppBundle:CalendarEvent', 'e')
+            ->update('AppBundle:Reservation', 'e')
             ->set('e.startDate', '?1')
             ->set('e.endDate', '?2')
             ->where('e.id = ?3')
@@ -32,7 +32,7 @@ class CalendarEventRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('e')
-            ->update('AppBundle:CalendarEvent', 'e')
+            ->update('AppBundle:Reservation', 'e')
             ->set('e.startDate', '?1')
             ->set('e.endDate', '?2')
             ->where('e.id = ?3')
@@ -47,7 +47,7 @@ class CalendarEventRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('e')
-            ->update('AppBundle:CalendarEvent', 'e')
+            ->update('AppBundle:Reservation', 'e')
             ->set('e.title', '?1')
             ->where('e.id = ?3')
             ->setParameter(1, $newTitle)
@@ -60,7 +60,7 @@ class CalendarEventRepository extends EntityRepository
     {
         return $this
             ->createQueryBuilder('e')
-            ->delete('AppBundle:CalendarEvent', 'e')
+            ->delete('AppBundle:Reservation', 'e')
             ->where('e.id = ?1')
             ->setParameter(1, $idEvent)
             ->getQuery()

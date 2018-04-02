@@ -10,6 +10,7 @@ namespace AppBundle\Admin;
 
 
 use AppBundle\Entity\Batiment;
+use AppBundle\Entity\Site;
 use Sonata\AdminBundle\Admin\AbstractAdmin;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
@@ -22,7 +23,7 @@ class EtageAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form->add('numEtage', IntegerType::class)
-        ->add('batiment', EntityType::class, array('class' => Batiment::class, 'choice_label' => 'idBatiment'));
+            ->add('batiment', EntityType::class, array('class' => Batiment::class));
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)

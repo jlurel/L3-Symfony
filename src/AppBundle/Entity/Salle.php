@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Salle
@@ -19,12 +20,18 @@ class Salle
      * @var int
      * @ORM\Id
      * @ORM\Column(name="id", type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+
+    /**
+     * @var int
+     *
+     * @ORM\Column(name="num_salle", type="integer")
      */
     private $numSalle;
 
-
     /**
-     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Etage", inversedBy="salles")
      */
     private $etage;
@@ -34,13 +41,6 @@ class Salle
      * @ORM\Column(name="capacite", type="integer")
      */
     private $capacite;
-
-    /**
-     * @var bool
-     *
-     * @ORM\Column(name="disponibilite", type="boolean")
-     */
-    private $disponibilite;
 
     /**
      * @var bool
@@ -60,6 +60,16 @@ class Salle
     public function __construct()
     {
         $this->reservations = new ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**
@@ -119,30 +129,6 @@ class Salle
     }
 
     /**
-     * Set disponibilite
-     *
-     * @param boolean $disponibilite
-     *
-     * @return Salle
-     */
-    public function setDisponibilite($disponibilite)
-    {
-        $this->disponibilite = $disponibilite;
-
-        return $this;
-    }
-
-    /**
-     * Get disponibilite
-     *
-     * @return bool
-     */
-    public function getDisponibilite()
-    {
-        return $this->disponibilite;
-    }
-
-    /**
      * Set contientProjecteur
      *
      * @param boolean $contientProjecteur
@@ -174,8 +160,8 @@ class Salle
      */
     public function ajouterReservation(Reservation $reservation)
     {
-        $this->reservations[] = $reservation;
-        $reservation->setSalle();
+        $this->reservations->add($reservation);
+        $reservation->setSalle($this);
 
         return $this;
     }
@@ -203,5 +189,10 @@ class Salle
     public function getNombreReservations()
     {
         return $this->reservations->count();
+    }
+
+    public function __toString()
+    {
+        return $this->etage. " " .strval($this->numSalle);
     }
 }

@@ -22,7 +22,8 @@ class SalleAdmin extends AbstractAdmin
     protected function configureFormFields(FormMapper $form)
     {
         $form->add('numSalle', IntegerType::class)
-            ->add('etage', EntityType::class, array('class' => Etage::class, 'choice_label' => 'numEtage'));
+            ->add('capacite', IntegerType::class)
+            ->add('etage', EntityType::class, array('class' => Etage::class));
     }
 
     protected function configureDatagridFilters(DatagridMapper $filter)
@@ -33,5 +34,6 @@ class SalleAdmin extends AbstractAdmin
     protected function configureListFields(ListMapper $list)
     {
         $list->addIdentifier('numSalle');
+        $list->add('_action', null, array('actions' => array('edit' => [], 'delete' => [])));
     }
 }

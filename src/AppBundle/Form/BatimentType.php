@@ -1,38 +1,42 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Katsuo
- * Date: 11/03/2018
- * Time: 20:42
- */
 
 namespace AppBundle\Form;
 
-
-use AppBundle\Entity\Batiment;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EtageFormType extends AbstractType
+class BatimentType extends AbstractType
 {
+    /**
+     * {@inheritdoc}
+     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('batiment', EntityType::class, array('class' => Batiment::class, 'choice_label' => 'idBatiment'))
-            ->add('numEtage', IntegerType::class);
+        $builder->add('libelle')->add('site', EntityType::class, [
+            'class' => 'AppBundle\Entity\Site',
+            'placeholder' => 'Sélectionnez le site'
+        ]);
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\Etage'
+            'data_class' => 'AppBundle\Entity\Batiment'
         ));
     }
 
+    /**
+     * {@inheritdoc}
+     */
     public function getBlockPrefix()
     {
-        return 'registration_etage_form_type';
+        return 'appbundle_batiment';
     }
+
+
 }
